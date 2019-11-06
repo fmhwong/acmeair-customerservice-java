@@ -2,7 +2,6 @@
 <server description="new server">
   <!-- Enable features -->
   <featureManager>
-   <feature>usr:opentracingZipkin-0.31</feature>
     <feature>microProfile-3.0</feature>
     <feature>jndi-1.0</feature>
     <feature>jsp-2.3</feature>
@@ -17,9 +16,12 @@
 		httpPort="9080" httpsPort="9443">
 	</httpEndpoint>
 
-	<opentracingZipkin />
-
 	<webApplication name="acmeair-customerservice"
 		location="acmeair-customerservice-java-3.0.0-SNAPSHOT.war"
-		contextRoot="/" />
+		contextRoot="/"> 
+		    <classloader apiTypeVisibility="+third-party"/>
+	</webApplication>
+		
+  <logging traceSpecification="com.ibm.ws.opentracing.*=all:com.ibm.ws.microprofile.opentracing.*=all"/>
+		
 </server>
